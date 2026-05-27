@@ -3,7 +3,7 @@ import sys
 
 import pytest
 import pytest_asyncio
-
+# forca o windows usar o asycio event loop
 if sys.platform.startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
@@ -20,11 +20,11 @@ from src.mundo_invest.models.models import table_registry
 def client(session):
     def get_session_override():
         return session
-
+    # cria um cliente para simular requisicoes 
     with TestClient(app) as client:
         app.dependency_overrides[get_session] = get_session_override
         yield client
-
+    # limpa para nao atrapalhar os outros dados
     app.dependency_overrides.clear()
 
 

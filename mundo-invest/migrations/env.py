@@ -1,6 +1,6 @@
 import asyncio
 import sys
-
+# forca o windows usar o asycio event loop
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(
         asyncio.WindowsSelectorEventLoopPolicy()
