@@ -22,7 +22,7 @@ class Cliente:
     tipo_solicitacao: Mapped[str] = mapped_column(nullable=True)
     valor_patrimonio: Mapped[float] = mapped_column(nullable=True)
     prioridade: Mapped[PrioridadeEnum] = mapped_column(
-        nullable=True, init=False, default=PrioridadeEnum.NORMAL
+        nullable=True, init=False, default=None
     )
     status: Mapped[StatusEnum] = mapped_column(
         nullable=True, default=StatusEnum.AGUARDANDO_ANALISE, init=False
