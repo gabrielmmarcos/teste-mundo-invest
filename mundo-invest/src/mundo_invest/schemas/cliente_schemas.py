@@ -4,20 +4,19 @@ from mundo_invest.enums.enums import StatusEnum
 
 
 class ClientePublic(BaseModel):
-    id: int
+    # id: int
     cliente_nome: str
     cliente_email: EmailStr
     tipo_solicitacao: str
-    valor_patrimonio: float
+    valor_patrimonio: float 
 
+class ClienteResponse(ClientePublic):
+    status: StatusEnum = Field(default=StatusEnum.AGUARDANDO_ANALISE)
+    
 
 class ClienteList(BaseModel):
-    clientes: list[ClientePublic]
+    clientes: list[ClienteResponse]
 
 
-class ClienteResponde(ClientePublic):
-    status: StatusEnum = Field(default=StatusEnum.AGUARDANDO_ANALISE)
-
-
-class ClientePrioridade(ClienteResponde):
+class ClientePrioridade(ClienteResponse):
     prioridade: str

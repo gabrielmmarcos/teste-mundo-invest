@@ -16,5 +16,7 @@ class Cliente:
     cliente_email: Mapped[str] = mapped_column(nullable=False, unique=True)
     tipo_solicitacao: Mapped[str] = mapped_column(nullable=True)
     valor_patrimonio: Mapped[float] = mapped_column(nullable=True)
-    prioridade: Mapped[str] = mapped_column(nullable=True)
-    status: Mapped[StatusEnum] = mapped_column(nullable=True, default=StatusEnum.AGUARDANDO_ANALISE)
+    prioridade: Mapped[str] = mapped_column(nullable=True, init=False)
+    status: Mapped[StatusEnum] = mapped_column(
+        nullable=True, default=StatusEnum.AGUARDANDO_ANALISE, init=False
+    )

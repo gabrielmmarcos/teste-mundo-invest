@@ -6,9 +6,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from mundo_invest.database import get_session
 from mundo_invest.schemas.cliente_schemas import (
     ClienteList,
+    ClientePublic,
+    ClienteResponse,
 )
 from mundo_invest.schemas.root_schemas import FilterPage
-from mundo_invest.services.cliente_services import read_all_clients_service
+from mundo_invest.services.cliente_services import (
+    create_client_service,
+    read_all_clients_service,
+)
 
 router = APIRouter(prefix="/clientes", tags=["clientes"])
 
@@ -20,3 +25,11 @@ async def read_all_clients(
     session: T_Session, filter: Annotated[FilterPage, Query()]
 ):
     return {"clientes": await read_all_clients_service(session, filter)}
+
+
+@router.post("/criar_cliente", response_model=ClienteResponse)
+async def create_client(
+    client: ClientePublic,
+    session: T_Session,
+):
+    return await create_client_service(client, session)
