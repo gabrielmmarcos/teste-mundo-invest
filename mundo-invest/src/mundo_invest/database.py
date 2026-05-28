@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
-from src.mundo_invest.settings import Settings
+from mundo_invest.settings import Settings
 
 # criando engine do banco de dados
 engine = create_async_engine(Settings().DATABASE_URL)

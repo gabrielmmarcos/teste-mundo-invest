@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column, registry
 
+from mundo_invest.enums.enums import StatusEnum
+
 table_registry = registry()
 
 
@@ -14,5 +16,5 @@ class Cliente:
     cliente_email: Mapped[str] = mapped_column(nullable=False, unique=True)
     tipo_solicitacao: Mapped[str] = mapped_column(nullable=True)
     valor_patrimonio: Mapped[float] = mapped_column(nullable=True)
-    status: Mapped[str]
-    prioridade: Mapped[str]
+    prioridade: Mapped[str] = mapped_column(nullable=True)
+    status: Mapped[StatusEnum] = mapped_column(nullable=True, default=StatusEnum.AGUARDANDO_ANALISE)
