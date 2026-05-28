@@ -4,11 +4,13 @@ from sys import platform
 
 from fastapi import FastAPI
 
-# from mundo_invest.routers.cliente_router import router
-# from mundo_invest.schemas.root_schemas import Message
-# teste
-from src.mundo_invest.routers.cliente_router import router
-from src.mundo_invest.schemas.root_schemas import Message
+from mundo_invest.routers.cliente_router import router
+from mundo_invest.routers.webhook_router import webhook_router
+from mundo_invest.schemas.root_schemas import Message
+
+# # teste
+# from src.mundo_invest.routers.cliente_router import router
+# from src.mundo_invest.schemas.root_schemas import Message
 
 if platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
@@ -23,6 +25,7 @@ app = FastAPI(
 )
 
 app.include_router(router)
+app.include_router(webhook_router)
 
 
 # endpoint root

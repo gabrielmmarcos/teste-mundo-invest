@@ -3,30 +3,29 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
-# teste
-from src.mundo_invest.database import get_session
-from src.mundo_invest.schemas.cliente_schemas import (
-    ClienteList,
-    ClientePublic,
-    ClienteResponse,
-)
-from src.mundo_invest.schemas.root_schemas import FilterPage
-from src.mundo_invest.services.cliente_services import (
-    create_client_service,
-    read_all_clients_service,
-)
-
-# from mundo_invest.database import get_session
-# from mundo_invest.schemas.cliente_schemas import (
+# # teste
+# from src.mundo_invest.database import get_session
+# from src.mundo_invest.schemas.cliente_schemas import (
 #     ClienteList,
 #     ClientePublic,
 #     ClienteResponse,
 # )
-# from mundo_invest.schemas.root_schemas import FilterPage
-# from mundo_invest.services.cliente_services import (
+# from src.mundo_invest.schemas.root_schemas import FilterPage
+# from src.mundo_invest.services.cliente_services import (
 #     create_client_service,
 #     read_all_clients_service,
 # )
+from mundo_invest.database import get_session
+from mundo_invest.schemas.cliente_schemas import (
+    ClienteList,
+    ClientePublic,
+    ClienteResponse,
+)
+from mundo_invest.schemas.root_schemas import FilterPage
+from mundo_invest.services.cliente_services import (
+    create_client_service,
+    read_all_clients_service,
+)
 
 router = APIRouter(prefix="/clientes", tags=["clientes"])
 

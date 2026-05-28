@@ -1,9 +1,9 @@
 from pydantic import BaseModel, EmailStr, Field
 
-# teste
-from src.mundo_invest.enums.enums import StatusEnum
+# # teste
+# from src.mundo_invest.enums.enums import StatusEnum
 
-# from mundo_invest.enums.enums import StatusEnum
+from mundo_invest.enums.enums import StatusEnum
 
 
 class ClientePublic(BaseModel):

@@ -4,7 +4,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.mundo_invest.enums.enums import StatusEnum
+from src.mundo_invest.enums.enums import PrioridadeEnum, StatusEnum
 from src.mundo_invest.models.models import Cliente
 
 
@@ -25,7 +25,7 @@ async def test_create_produto(session: AsyncSession):
     cliente = await session.scalar(
         select(Cliente).where(Cliente.cliente_nome == "Gabriel Marcos")
     )
-    # verifica se esse cliente tem os dados do disc
+    # verifica se esse cliente tem os dados do discionario
     assert asdict(cliente) == {
         "id": 1,
         "cliente_nome": "Gabriel Marcos",
@@ -33,5 +33,5 @@ async def test_create_produto(session: AsyncSession):
         "tipo_solicitacao": "entrado",
         "valor_patrimonio": "1100",
         "status": StatusEnum.AGUARDANDO_ANALISE,
-        "prioridade": None,
+        "prioridade": PrioridadeEnum.NORMAL,
     }
