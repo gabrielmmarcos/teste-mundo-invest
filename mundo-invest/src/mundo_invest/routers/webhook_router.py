@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from mundo_invest.database import get_session
 from mundo_invest.schemas.cliente_schemas import ClientePrioridade
 from mundo_invest.schemas.root_schemas import FilterPage
-from mundo_invest.schemas.webhook_schemas import WebhookList, WebhookPublic
+from mundo_invest.schemas.webhook_schemas import WebhookList, WebhookResponse
 from mundo_invest.services.webhook_services import (
     create_webhook_service,
     read_all_webhooks_service,
@@ -27,7 +27,7 @@ async def read_all_webhooks(
 
 @webhook_router.post("/pipefy/card-updated", response_model=ClientePrioridade)
 async def create_webhook(
-    webhook: WebhookPublic,
+    webhook: WebhookResponse,
     session: T_Session,
 ):
     return await create_webhook_service(webhook, session)

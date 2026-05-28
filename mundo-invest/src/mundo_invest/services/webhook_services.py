@@ -2,6 +2,7 @@ from http import HTTPStatus
 
 from fastapi import HTTPException
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from mundo_invest.enums.enums import PrioridadeEnum, StatusEnum
@@ -11,11 +12,20 @@ from mundo_invest.schemas.root_schemas import FilterPage
 
 async def read_all_webhooks_service(session: AsyncSession, filter: FilterPage):
     result = await session.scalars(
-        select(Webhook).offset(filter.offset).limit(filter.limit)
+        select(Webhook).offset(filter.offset).limit(filter.limit).options(selectinload(Webhook.cliente))
     )
 
-    return result.all()
+    webhooks = result.all()
 
+    return [
+        {
+            "event_id": webhook.event_id,
+            "card_id": webhook.card_id,
+            "timestamp": webhook.timestamp,
+            "cliente_email": webhook.cliente.cliente_email,
+        }
+        for webhook in webhooks
+    ]
 
 async def create_webhook_service(
     webhook,
@@ -52,7 +62,9 @@ async def create_webhook_service(
 
     novo_webhook = Webhook(
         event_id=webhook.event_id,
-        card_id=webhook.card_id
+        card_id=webhook.card_id,
+        cliente_id=cliente.id,  
+        cliente=cliente
     )
 
     session.add(novo_webhook)
