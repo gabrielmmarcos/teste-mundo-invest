@@ -4,9 +4,14 @@ from fastapi import HTTPException
 from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from mundo_invest.models.models import Cliente
-from mundo_invest.schemas.cliente_schemas import ClientePublic
-from mundo_invest.schemas.root_schemas import FilterPage
+# teste
+from src.mundo_invest.models.models import Cliente
+from src.mundo_invest.schemas.cliente_schemas import ClientePublic
+from src.mundo_invest.schemas.root_schemas import FilterPage
+
+# from mundo_invest.models.models import Cliente
+# from mundo_invest.schemas.cliente_schemas import ClientePublic
+# from mundo_invest.schemas.root_schemas import FilterPage
 
 
 async def read_all_clients_service(session: AsyncSession, filter: FilterPage):
@@ -28,8 +33,8 @@ async def create_client_service(
 
     if db_product:
         raise HTTPException(
-            status_code=HTTPStatus.CONFLICT, 
-            detail="Cliente Já Existe! Tente Cadastrar outro email."
+            status_code=HTTPStatus.CONFLICT,
+            detail="Cliente Já Existe! Tente Cadastrar outro email.",
         )
 
     db_product = Cliente(

@@ -1,6 +1,9 @@
 from sqlalchemy.orm import Mapped, mapped_column, registry
 
-from mundo_invest.enums.enums import StatusEnum
+# teste
+from src.mundo_invest.enums.enums import StatusEnum
+
+# from mundo_invest.enums.enums import StatusEnum
 
 table_registry = registry()
 

@@ -4,6 +4,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.mundo_invest.enums.enums import StatusEnum
 from src.mundo_invest.models.models import Cliente
 
 
@@ -16,8 +17,6 @@ async def test_create_produto(session: AsyncSession):
         cliente_email="gabrielmmarcos@gmail.com",
         tipo_solicitacao="entrado",
         valor_patrimonio="1100",
-        status="processando",
-        prioridade="alta",
     )
     # adiciona o cliente criado no banco
     session.add(new_cliente)
@@ -33,6 +32,6 @@ async def test_create_produto(session: AsyncSession):
         "cliente_email": "gabrielmmarcos@gmail.com",
         "tipo_solicitacao": "entrado",
         "valor_patrimonio": "1100",
-        "status": "processando",
-        "prioridade": "alta",
+        "status": StatusEnum.AGUARDANDO_ANALISE,
+        "prioridade": None,
     }
