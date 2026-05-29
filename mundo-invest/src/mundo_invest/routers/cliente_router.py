@@ -31,7 +31,8 @@ router = APIRouter(prefix="/clientes", tags=["clientes"])
 
 T_Session = Annotated[AsyncSession, Depends(get_session)]
 
-# endpoint get listando todos os clientes do banco 
+
+# endpoint get listando todos os clientes do banco
 @router.get(
     "/all", response_model=ClienteList, response_model_exclude_none=True
 )
@@ -39,6 +40,7 @@ async def read_all_clients(
     session: T_Session, filter: Annotated[FilterPage, Query()]
 ):
     return {"clientes": await read_all_clients_service(session, filter)}
+
 
 # endpoint post para criar cliente
 @router.post(

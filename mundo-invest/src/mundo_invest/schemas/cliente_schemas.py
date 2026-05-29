@@ -4,6 +4,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 from mundo_invest.enums.enums import PrioridadeEnum, StatusEnum
 
+
 # schemas para o endpoint post
 class ClientePublic(BaseModel):
     # id: int
@@ -12,12 +13,14 @@ class ClientePublic(BaseModel):
     tipo_solicitacao: str
     valor_patrimonio: float
 
-# schemas para a resposta do endpoint post 
+
+# schemas para a resposta do endpoint post
 class ClienteResponse(ClientePublic):
     status: StatusEnum = Field(default=StatusEnum.AGUARDANDO_ANALISE)
     prioridade: Optional[PrioridadeEnum] = None
 
-# schemas para o endpoint get 
+
+# schemas para o endpoint get
 class ClienteList(BaseModel):
     clientes: list[ClienteResponse]
 

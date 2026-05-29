@@ -16,12 +16,14 @@ webhook_router = APIRouter(prefix="/webhooks", tags=["webhooks"])
 
 T_Session = Annotated[AsyncSession, Depends(get_session)]
 
+
 # endpoint get listando todos os webhooks do banco
 @webhook_router.get("/all", response_model=WebhookList)
 async def read_all_webhooks(
     session: T_Session, filter: Annotated[FilterPage, Query()]
 ):
     return {"webhooks": await read_all_webhooks_service(session, filter)}
+
 
 # endpoint post
 @webhook_router.post("/pipefy/card-updated", response_model=ClientePrioridade)

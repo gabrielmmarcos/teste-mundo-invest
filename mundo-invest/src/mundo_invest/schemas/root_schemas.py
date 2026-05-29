@@ -1,8 +1,10 @@
 from pydantic import BaseModel, Field
 
+
 # schemas padrao de menssagem
 class Message(BaseModel):
     message: str
+
 
 # schemas para filter nos endpoint get
 class FilterPage(BaseModel):
