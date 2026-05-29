@@ -8,10 +8,7 @@ from mundo_invest.routers.cliente_router import router
 from mundo_invest.routers.webhook_router import webhook_router
 from mundo_invest.schemas.root_schemas import Message
 
-# # teste
-# from src.mundo_invest.routers.cliente_router import router
-# from src.mundo_invest.schemas.root_schemas import Message
-
+# forca o windows usar o asycio event loop
 if platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
@@ -24,6 +21,7 @@ app = FastAPI(
               de processos.""",
 )
 
+# rotas da api
 app.include_router(router)
 app.include_router(webhook_router)
 
