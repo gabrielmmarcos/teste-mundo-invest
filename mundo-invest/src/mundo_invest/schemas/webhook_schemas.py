@@ -8,9 +8,11 @@ class WebhookResponse(BaseModel):
     card_id: str
     timestamp: datetime
     cliente_email: EmailStr
-    
+
+
 # class WebhookPublic(WebhookResponse):
 #     cliente_email: EmailStr
+
 
 class WebhookList(BaseModel):
     webhooks: list[WebhookResponse]

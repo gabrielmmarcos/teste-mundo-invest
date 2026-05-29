@@ -1,10 +1,10 @@
-from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
+
+from pydantic import BaseModel, EmailStr, Field
 
 # # teste
 # from src.mundo_invest.enums.enums import StatusEnum
-
-from mundo_invest.enums.enums import StatusEnum, PrioridadeEnum
+from mundo_invest.enums.enums import PrioridadeEnum, StatusEnum
 
 
 class ClientePublic(BaseModel):
@@ -23,6 +23,7 @@ class ClienteResponse(ClientePublic):
 class ClienteList(BaseModel):
     clientes: list[ClienteResponse]
 
-# para post webhook 
+
+# para post webhook
 class ClientePrioridade(ClienteResponse):
     prioridade: str

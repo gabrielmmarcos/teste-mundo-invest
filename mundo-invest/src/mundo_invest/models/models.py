@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from sqlalchemy import func, ForeignKey
+from sqlalchemy import ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column, registry, relationship
 
-# # teste
-#from src.mundo_invest.enums.enums import StatusEnum, PrioridadeEnum
+# migrations
+# from src.mundo_invest.enums.enums import StatusEnum, PrioridadeEnum
 from mundo_invest.enums.enums import PrioridadeEnum, StatusEnum
 
 table_registry = registry()
@@ -40,8 +40,7 @@ class Webhook:
     card_id: Mapped[str] = mapped_column(nullable=False)
     # cliente_email: Mapped[str] = mapped_column(nullable=False)
     cliente_id: Mapped[int] = mapped_column(
-        ForeignKey("clientes.id"),
-        nullable=True
+        ForeignKey("clientes.id"), nullable=True
     )
     timestamp: Mapped[datetime] = mapped_column(
         init=False, onupdate=func.now(), server_default=func.now()

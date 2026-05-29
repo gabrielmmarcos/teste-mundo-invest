@@ -32,14 +32,20 @@ router = APIRouter(prefix="/clientes", tags=["clientes"])
 T_Session = Annotated[AsyncSession, Depends(get_session)]
 
 
-@router.get("/all", response_model=ClienteList, response_model_exclude_none=True)
+@router.get(
+    "/all", response_model=ClienteList, response_model_exclude_none=True
+)
 async def read_all_clients(
     session: T_Session, filter: Annotated[FilterPage, Query()]
 ):
     return {"clientes": await read_all_clients_service(session, filter)}
 
 
-@router.post("/criar_cliente", response_model=ClienteResponse, response_model_exclude_none=True)
+@router.post(
+    "/criar_cliente",
+    response_model=ClienteResponse,
+    response_model_exclude_none=True,
+)
 async def create_client(
     client: ClientePublic,
     session: T_Session,

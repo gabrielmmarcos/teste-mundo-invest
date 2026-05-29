@@ -12,9 +12,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from testcontainers.postgres import PostgresContainer
 
-from src.mundo_invest.app import app
-from src.mundo_invest.database import get_session
-from src.mundo_invest.models.models import table_registry
+from mundo_invest.app import app
+from mundo_invest.database import get_session
+from mundo_invest.models.models import table_registry
 
 
 @pytest.fixture
